@@ -8,8 +8,8 @@ export const GetInvoice = async (
     call: ServerUnaryCall<GetInvoiceRequest, GetInvoiceResponse>,
     callback: sendUnaryData<GetInvoiceResponse>,
 ) => {
-    const pdfStream = await getInvoiceStream()
+    const pdfStream = await getInvoiceStream(call.request)
     const url = await uploadWritableStream(pdfStream)
 
-    callback(null, { url, createdAt: 0, updatedAt: 0, size: 0 })
+    callback(null, { url, createdAt: 10, updatedAt: 20, size: 30 })
 }

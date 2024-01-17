@@ -7,4 +7,5 @@
 *.pid.lock
 
 /dist
+/temp
 /node_modules

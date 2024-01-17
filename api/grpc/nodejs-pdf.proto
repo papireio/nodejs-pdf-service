@@ -6,8 +6,58 @@ service NodePDF {
     rpc GetInvoice(GetInvoiceRequest) returns (GetInvoiceResponse) {}
 }
 
+message InvoiceItem {
+    string name = 1;
+    string quantity = 2;
+    string price = 3;
+    string tax = 4;
+    string total = 5;
+}
+
 message GetInvoiceRequest {
-    string message = 1;
+    string vendor_name = 1;
+    string vendor_uuid = 2;
+    optional string vendor_address_line1 = 3;
+    optional string vendor_address_line2 = 4;
+    optional string vendor_phone = 5;
+    optional string vendor_email = 6;
+
+    string customer_name = 7;
+    string customer_uuid = 8;
+    optional string customer_address_line1 = 9;
+    optional string customer_address_line2 = 10;
+
+    string invoice_number = 11;
+    string invoice_date = 12;
+    optional string invoice_reference = 13;
+
+    optional string tax_base = 14;
+    optional string tax_value = 15;
+    string total = 16;
+
+    optional string payment_method = 17;
+    optional string notes = 18;
+
+    repeated InvoiceItem items = 19;
+
+    string title_customer = 20;
+    string title_invoice = 21;
+    string title_invoice_number = 22;
+    string title_invoice_date = 23;
+    string title_invoice_reference = 24;
+
+    string title_items = 25;
+    string title_items_quantity = 26;
+    string title_items_price = 27;
+    string title_items_tax = 28;
+    string title_items_total = 29;
+
+    string title_tax_base = 30;
+    string title_tax_value = 31;
+    string title_total = 32;
+
+    string title_payment_method = 33;
+    string title_notes = 34;
 }
 
 message GetInvoiceResponse {
