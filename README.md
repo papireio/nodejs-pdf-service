@@ -1,6 +1,6 @@
-# nodejs-grpc-server
+# Node.js PDF Service
 
-Node.js gRPC Server
+Node.js PDF Service
 
 ### Requirements
 - [protobuf](https://grpc.io/docs/protoc-installation)
@@ -9,4 +9,4 @@ Node.js gRPC Server
 - `make generate`
 
 ### Environment
-- `PORT=50000`
+- `PORT=50010`

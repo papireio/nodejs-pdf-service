@@ -1,1 +1,1 @@
-export * from './nodejs-grpc'
+export * from './nodejs-pdf'

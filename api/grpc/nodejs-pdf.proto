@@ -1,0 +1,18 @@
+syntax = "proto3";
+
+package nodejs.pdf;
+
+service NodePDF {
+    rpc GetInvoice(GetInvoiceRequest) returns (GetInvoiceResponse) {}
+}
+
+message GetInvoiceRequest {
+    string message = 1;
+}
+
+message GetInvoiceResponse {
+    string url = 1;
+    uint32 createdAt = 2;
+    uint32 updatedAt = 3;
+    uint32 size = 4;
+}

@@ -2,13 +2,13 @@ import 'dotenv/config'
 
 import { ServerCredentials, Server } from '@grpc/grpc-js'
 
-import { NodeGrpcService } from './pkg'
+import { NodePDFService } from './pkg'
 import { serverImplementation } from './server'
 import pkg from '../package.json'
 ;(function main() {
     const server = new Server()
 
-    server.addService(NodeGrpcService, serverImplementation)
+    server.addService(NodePDFService, serverImplementation)
     server.bindAsync(`0.0.0.0:${process.env.PORT}`, ServerCredentials.createInsecure(), (error, port) => {
         if (error) {
             throw error

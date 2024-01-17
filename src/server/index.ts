@@ -1,6 +1,6 @@
-import { ServiceMethod } from './methods/ServiceMethod'
-import { NodeGrpcServer } from '../pkg'
+import { GetInvoice } from './methods'
+import { NodePDFServer } from '../pkg'
 
-export const serverImplementation: NodeGrpcServer = {
-    serviceMethod: ServiceMethod,
+export const serverImplementation: NodePDFServer = {
+    getInvoice: GetInvoice,
 }
