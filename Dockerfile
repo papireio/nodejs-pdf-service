@@ -6,6 +6,7 @@ COPY . .
 RUN yarn install && \
     yarn dist && \
     mkdir -p /usr/app && \
+    mv ./fonts ./dist \
     cp -r ./dist/* /usr/app/
 
 WORKDIR /usr/app

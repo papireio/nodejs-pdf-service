@@ -226,7 +226,7 @@ const getContent = (data: GetInvoiceRequest): unknown[] => {
 export const getInvoiceStream = async (data: GetInvoiceRequest): Promise<Readable> => {
     const content = getContent(data)
     const doc = pdfmake.createPdf({ content, styles: INVOICE_STYLES })
-    await doc.write('temp/demo.pdf')
+    doc.write('temp/demo.pdf')
 
     return doc.getStream()
 }
