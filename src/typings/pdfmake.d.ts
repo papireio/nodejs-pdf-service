@@ -1,5 +1,5 @@
 declare module 'pdfmake' {
-    import * as stream from 'stream'
+    import { Readable } from 'stream'
     export type Font = Record<string, string>
     export type Fonts = Record<string, Font>
 
@@ -30,7 +30,7 @@ declare module 'pdfmake' {
     }
 
     export type PDFInstance = {
-        getStream: () => Promise<stream.Readable>
+        getStream: () => Promise<Readable>
         write: (filename: string) => Promise<void>
     }
 
@@ -40,5 +40,5 @@ declare module 'pdfmake' {
     }
 
     export function addFonts(fonts: Fonts): void
-    export function createPdf(definition: DocDefinition): PDFInstance
+    export function createPdf(definition: DocDefinition, options?: Options): PDFInstance
 }

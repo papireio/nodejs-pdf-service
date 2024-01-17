@@ -2,7 +2,7 @@ import pdfmake from 'pdfmake'
 
 import { GetInvoiceRequest } from '../../pkg'
 import { HEADER_LEFT_MARGIN, INVOICE_STYLES, PRIMARY_LINE_COLOR, SECONDARY_LINE_COLOR } from '../constants'
-import * as stream from 'stream'
+import { Readable } from 'stream'
 
 const getContent = (data: GetInvoiceRequest): unknown[] => {
     const result: unknown[] = [
@@ -223,10 +223,10 @@ const getContent = (data: GetInvoiceRequest): unknown[] => {
     return result
 }
 
-export const getInvoiceStream = (data: GetInvoiceRequest): Promise<stream.Readable> => {
+export const getInvoiceStream = async (data: GetInvoiceRequest): Promise<Readable> => {
     const content = getContent(data)
     const doc = pdfmake.createPdf({ content, styles: INVOICE_STYLES })
-    doc.write('temp/demo.pdf')
+    await doc.write('temp/demo.pdf')
 
     return doc.getStream()
 }
