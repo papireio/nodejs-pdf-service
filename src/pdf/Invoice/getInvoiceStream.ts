@@ -1,7 +1,7 @@
 import pdfmake from 'pdfmake'
 
 import { GetInvoiceRequest } from '../../pkg'
-import { HEADER_LEFT_MARGIN, INVOICE_STYLES, SECONDARY_LINE_COLOR } from '../constants'
+import { HEADER_LEFT_MARGIN, INVOICE_STYLES, PRIMARY_LINE_COLOR, SECONDARY_LINE_COLOR } from '../constants'
 import * as stream from 'stream'
 
 const getContent = (data: GetInvoiceRequest): unknown[] => {
@@ -135,6 +135,89 @@ const getContent = (data: GetInvoiceRequest): unknown[] => {
                 ],
             },
         ],
+    })
+
+    result.push({
+        svg: `<svg width="494" height="1" viewBox="0 0 494 1" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <line x1="494" y1="0.5" x2="-4.37114e-08" y2="0.499957" stroke="${PRIMARY_LINE_COLOR}"/>
+        </svg>`,
+        width: 520,
+        margin: [0, 22, 0, 8],
+    })
+
+    result.push({
+        columns: [
+            {
+                width: '60%',
+                text: data.titleItems,
+                style: ['Text3'],
+            },
+            {
+                text: data.titleItemsQuantity,
+                style: ['Text3'],
+            },
+            {
+                text: data.titleItemsPrice,
+                style: ['Text3'],
+            },
+            {
+                text: data.titleItemsTax,
+                style: ['Text3'],
+            },
+            {
+                width: '*',
+                text: data.titleItemsTotal,
+                style: ['Text3'],
+                alignment: 'right',
+            },
+        ],
+    })
+
+    result.push({
+        svg: `<svg width="494" height="1" viewBox="0 0 494 1" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <line x1="494" y1="0.5" x2="-4.37114e-08" y2="0.499957" stroke="${SECONDARY_LINE_COLOR}"/>
+        </svg>`,
+        width: 520,
+        margin: [0, 8, 0, 8],
+    })
+
+    for (const item of data.items) {
+        result.push({
+            margin: [0, 0, 0, 8],
+            columns: [
+                {
+                    width: '60%',
+                    text: item.name,
+                    style: ['Text4'],
+                },
+                {
+                    text: item.quantity,
+                    style: ['Text4'],
+                },
+                {
+                    text: item.price,
+                    style: ['Text4'],
+                },
+                {
+                    text: item.tax,
+                    style: ['Text4'],
+                },
+                {
+                    width: '*',
+                    text: item.total,
+                    style: ['Text4'],
+                    alignment: 'right',
+                },
+            ],
+        })
+    }
+
+    result.push({
+        svg: `<svg width="494" height="1" viewBox="0 0 494 1" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <line x1="494" y1="0.5" x2="-4.37114e-08" y2="0.499957" stroke="${PRIMARY_LINE_COLOR}"/>
+        </svg>`,
+        width: 520,
+        margin: [0, 122, 0, 8],
     })
 
     return result
