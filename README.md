@@ -16,3 +16,8 @@ Node.js PDF Service
 - `SPACES_REGION=`
 - `SPACES_SECRET=`
 - `SPACES_URL=`
+
+### Todo:
+- [ ] add unit tests
+- [ ] add logging and errors handling (Sentry, ELK, etc...)
+- [ ] cover `DocDefinition['content']` types

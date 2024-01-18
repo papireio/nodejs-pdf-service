@@ -1,2 +1,2 @@
-export * from './string'
+export * from './files'
 export * from './time'

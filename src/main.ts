@@ -2,8 +2,8 @@ import 'dotenv/config'
 
 import { ServerCredentials, Server } from '@grpc/grpc-js'
 
+import { serverImplementation } from './grpc'
 import { NodePDFService } from './pkg'
-import { serverImplementation } from './server'
 import pkg from '../package.json'
 ;(function main() {
     const server = new Server()
