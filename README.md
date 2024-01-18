@@ -9,4 +9,10 @@ Node.js PDF Service
 - `make generate`
 
 ### Environment
-- `PORT=50011`
+- `PORT=50010`
+- `SPACES_BUCKED=`
+- `SPACES_CDN_URL=`
+- `SPACES_KEY=`
+- `SPACES_REGION=`
+- `SPACES_SECRET=`
+- `SPACES_URL=`

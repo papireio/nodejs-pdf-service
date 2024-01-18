@@ -2,14 +2,24 @@ import { sendUnaryData, ServerUnaryCall } from '@grpc/grpc-js'
 
 import { getInvoiceStream } from '../../pdf'
 import { GetInvoiceRequest, GetInvoiceResponse } from '../../pkg'
-import { uploadWritableStream } from '../../s3'
+import { uploadStream } from '../../s3'
+import { getCurrentTime, getCurrentTimestamp, getRandomFileName } from '../../utils'
 
 export const GetInvoice = async (
-    call: ServerUnaryCall<GetInvoiceRequest, GetInvoiceResponse>,
+    { request }: ServerUnaryCall<GetInvoiceRequest, GetInvoiceResponse>,
     callback: sendUnaryData<GetInvoiceResponse>,
 ) => {
-    const pdfStream = await getInvoiceStream(call.request)
-    const url = await uploadWritableStream(pdfStream)
+    try {
+        const timestamp = getCurrentTimestamp()
+        const time = getCurrentTime(request.metadataClientRegion)
 
-    callback(null, { url, createdAt: 10, updatedAt: 20, size: 30 })
+        const filename = getRandomFileName('Invoice', time, 'pdf')
+
+        const stream = await getInvoiceStream(request)
+        const { url, size } = await uploadStream(stream, `${request.metadataClientUuid}/${filename}`)
+
+        callback(null, { url, createdAt: timestamp, updatedAt: timestamp, size })
+    } catch (error) {
+        callback(error, null)
+    }
 }

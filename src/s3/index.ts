@@ -1,1 +1,1 @@
-export * from './uploadWritableStream'
+export * from './uploadStream'

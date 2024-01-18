@@ -4,7 +4,7 @@ import { GetInvoiceRequest } from '../../pkg'
 import { HEADER_LEFT_MARGIN, INVOICE_STYLES, PRIMARY_LINE_COLOR, SECONDARY_LINE_COLOR } from '../constants'
 import { Readable } from 'stream'
 
-const getContent = (data: GetInvoiceRequest): unknown[] => {
+const getInvoiceContent = (data: GetInvoiceRequest): unknown[] => {
     const result: unknown[] = [
         { text: data.vendorName, margin: [HEADER_LEFT_MARGIN, 12, 0, 8], style: ['Heading1'] },
         { text: data.vendorUuid, margin: [HEADER_LEFT_MARGIN, 0, 0, 2], style: ['Text1'] },
@@ -336,7 +336,7 @@ const getContent = (data: GetInvoiceRequest): unknown[] => {
 }
 
 export const getInvoiceStream = async (data: GetInvoiceRequest): Promise<Readable> => {
-    const content = getContent(data)
+    const content = getInvoiceContent(data)
     const doc = pdfmake.createPdf({ content, styles: INVOICE_STYLES })
     doc.write('temp/demo.pdf')
 

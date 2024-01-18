@@ -55,6 +55,8 @@ export interface GetInvoiceRequest {
     titleTotal: string
     titlePaymentMethod: string
     titleNotes: string
+    metadataClientUuid: string
+    metadataClientRegion?: string | undefined
 }
 
 export interface GetInvoiceResponse {
@@ -219,6 +221,8 @@ function createBaseGetInvoiceRequest(): GetInvoiceRequest {
         titleTotal: '',
         titlePaymentMethod: '',
         titleNotes: '',
+        metadataClientUuid: '',
+        metadataClientRegion: undefined,
     }
 }
 
@@ -325,6 +329,12 @@ export const GetInvoiceRequest = {
         }
         if (message.titleNotes !== '') {
             writer.uint32(274).string(message.titleNotes)
+        }
+        if (message.metadataClientUuid !== '') {
+            writer.uint32(282).string(message.metadataClientUuid)
+        }
+        if (message.metadataClientRegion !== undefined) {
+            writer.uint32(290).string(message.metadataClientRegion)
         }
         return writer
     },
@@ -574,6 +584,20 @@ export const GetInvoiceRequest = {
 
                     message.titleNotes = reader.string()
                     continue
+                case 35:
+                    if (tag !== 282) {
+                        break
+                    }
+
+                    message.metadataClientUuid = reader.string()
+                    continue
+                case 36:
+                    if (tag !== 290) {
+                        break
+                    }
+
+                    message.metadataClientRegion = reader.string()
+                    continue
             }
             if ((tag & 7) === 4 || tag === 0) {
                 break
@@ -629,6 +653,10 @@ export const GetInvoiceRequest = {
             titleTotal: isSet(object.titleTotal) ? globalThis.String(object.titleTotal) : '',
             titlePaymentMethod: isSet(object.titlePaymentMethod) ? globalThis.String(object.titlePaymentMethod) : '',
             titleNotes: isSet(object.titleNotes) ? globalThis.String(object.titleNotes) : '',
+            metadataClientUuid: isSet(object.metadataClientUuid) ? globalThis.String(object.metadataClientUuid) : '',
+            metadataClientRegion: isSet(object.metadataClientRegion)
+                ? globalThis.String(object.metadataClientRegion)
+                : undefined,
         }
     },
 
@@ -736,6 +764,12 @@ export const GetInvoiceRequest = {
         if (message.titleNotes !== '') {
             obj.titleNotes = message.titleNotes
         }
+        if (message.metadataClientUuid !== '') {
+            obj.metadataClientUuid = message.metadataClientUuid
+        }
+        if (message.metadataClientRegion !== undefined) {
+            obj.metadataClientRegion = message.metadataClientRegion
+        }
         return obj
     },
 
@@ -778,6 +812,8 @@ export const GetInvoiceRequest = {
         message.titleTotal = object.titleTotal ?? ''
         message.titlePaymentMethod = object.titlePaymentMethod ?? ''
         message.titleNotes = object.titleNotes ?? ''
+        message.metadataClientUuid = object.metadataClientUuid ?? ''
+        message.metadataClientRegion = object.metadataClientRegion ?? undefined
         return message
     },
 }

@@ -58,6 +58,9 @@ message GetInvoiceRequest {
 
     string title_payment_method = 33;
     string title_notes = 34;
+
+    string metadata_client_uuid = 35;
+    optional string metadata_client_region = 36;
 }
 
 message GetInvoiceResponse {
