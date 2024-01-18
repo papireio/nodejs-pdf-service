@@ -217,7 +217,119 @@ const getContent = (data: GetInvoiceRequest): unknown[] => {
         <line x1="494" y1="0.5" x2="-4.37114e-08" y2="0.499957" stroke="${PRIMARY_LINE_COLOR}"/>
         </svg>`,
         width: 520,
-        margin: [0, 122, 0, 8],
+        margin: [0, 122, 0, 16],
+    })
+
+    result.push({
+        margin: [HEADER_LEFT_MARGIN, 0, 0, 0],
+        columns: [
+            {
+                width: '*',
+                stack: [
+                    {
+                        text: data.titleTaxBase,
+                        style: ['Text5'],
+                        margin: [0, 0, 0, 8],
+                    },
+                    {
+                        text: data.titleTaxValue,
+                        style: ['Text5'],
+                        margin: [0, 0, 0, 8],
+                    },
+                ],
+            },
+            {
+                width: '*',
+                stack: [
+                    {
+                        text: data.taxBase,
+                        style: ['Text4'],
+                        alignment: 'right',
+                        margin: [0, 0, 0, 8],
+                    },
+                    {
+                        text: data.taxValue,
+                        style: ['Text4'],
+                        alignment: 'right',
+                        margin: [0, 0, 0, 8],
+                    },
+                ],
+            },
+        ],
+    })
+
+    result.push({
+        svg: `<svg width="220" height="1" viewBox="0 0 220 1" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <line x1="220" y1="0.5" x2="4.37114e-08" y2="0.500019" stroke="${PRIMARY_LINE_COLOR}"/>
+        </svg>
+        `,
+        width: 220,
+        margin: [HEADER_LEFT_MARGIN, 8, 0, 16],
+    })
+
+    result.push({
+        margin: [HEADER_LEFT_MARGIN, 0, 0, 0],
+        columns: [
+            {
+                width: '*',
+                stack: [
+                    {
+                        text: data.titleTotal,
+                        style: ['Text6'],
+                        margin: [0, 0, 0, 8],
+                    },
+                ],
+            },
+            {
+                width: '*',
+                stack: [
+                    {
+                        text: data.total,
+                        style: ['Text7'],
+                        alignment: 'right',
+                        margin: [0, 0, 0, 8],
+                    },
+                ],
+            },
+        ],
+    })
+
+    result.push({
+        svg: `<svg width="494" height="1" viewBox="0 0 494 1" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <line x1="494" y1="0.5" x2="-4.37114e-08" y2="0.499957" stroke="${SECONDARY_LINE_COLOR}"/>
+        </svg>`,
+        width: 520,
+        margin: [0, 48, 0, 22],
+    })
+
+    result.push({
+        text: data.titlePaymentMethod,
+        style: ['Heading1'],
+        margin: [0, 0, 0, 6],
+    })
+
+    result.push({
+        text: data.paymentMethod,
+        style: ['Text8'],
+    })
+
+    result.push({
+        svg: `<svg width="494" height="1" viewBox="0 0 494 1" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <line x1="494" y1="0.5" x2="-4.37114e-08" y2="0.499957" stroke="${SECONDARY_LINE_COLOR}"/>
+        </svg>`,
+        width: 520,
+        margin: [0, 22, 0, 22],
+    })
+
+    result.push({
+        text: data.titleNotes,
+        style: ['Heading1'],
+        margin: [0, 0, 0, 6],
+    })
+
+    result.push({
+        text: data.notes,
+        style: ['Text8'],
     })
 
     return result

@@ -43,4 +43,28 @@ export const INVOICE_STYLES: Record<string, StylesProps> = {
         color: PRIMARY_TEXT_COLOR,
         fontSize: 8,
     },
+    Text5: {
+        font: 'Inter',
+        color: TERTIARY_TEXT_COLOR,
+        fontSize: 10,
+    },
+    Text6: {
+        font: 'Inter',
+        color: PRIMARY_TEXT_COLOR,
+        fontSize: 10,
+        italics: true,
+        bold: true,
+    },
+    Text7: {
+        font: 'Inter',
+        color: PRIMARY_TEXT_COLOR,
+        fontSize: 8,
+        italics: true,
+        bold: true,
+    },
+    Text8: {
+        font: 'Inter',
+        color: PRIMARY_TEXT_COLOR,
+        fontSize: 10,
+    },
 }
